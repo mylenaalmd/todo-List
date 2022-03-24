@@ -2,32 +2,72 @@ const button = document.getElementById("criar-tarefa");
 const input = document.getElementById("texto-tarefa");
 const list = document.getElementById("lista-tarefas");
 const listItem = document.getElementsByTagName('li');
+const linhaFrase = document.getElementsByClassName('.completed');
 
-function novoItemLista() {
-    const fraseLista = JSON.parse(sessionStorage.getItem('frase'));
-    const listLength = fraseLista.lenght - 1;
-    const fraseText = fraseLista[listLength];
-    const frase = document.createElement('li');
-    frase.innerText = fraseText;
-    list.appendChild(frase);
+function addFrase(){
+    let texto = input.value;
+    let ciarLi = document.createElement("li");
+    ciarLi.innerText = texto;
+    list.appendChild(ciarLi);
+    input.value = '';
+    listItem.addEventListener('click', colorGrey);
+ //   listItem.addEventListener("dbclick", checkCompleted);
 }
-function addFrase (){
-    if(sessionStorage.getItem('frase') === null){
-        sessionStorage.setItem('frase', JSON.stringify([]));
-    }
-    const oldList = JSON.parse(sessionStorage.getItem('frase'));
-    const fraseText = input.value;
-    oldList.push(fraseText);
-    sessionStorage.setItem('frase', JSON.stringify(oldList));
-    novoItemLista();
-    }
+button.addEventListener('click', addFrase);
 
-    button.addEventListener('click', addFrase);
+function colorGrey(event){
+    event.target.style.backgroudColor = 'grey';
+}
 
+//function checkCompleted(event){
+ //   let addClass = document.createElement("class");
+ //   ciarLi.innerText = texto;
+ //   list.appendChild(ciarLi);
+ //   event.target.className('completed');
+  //  event.target.style.text-decoration = 'line-through solid rgb(0,0,0)';
+//}
+//let addClasse = document.getElementsByClassName(".completed");
+   // addClass.className.add("completed"); 
+   // className.add(listItem);
+    //console.log(listItem);
 
-   // function colorList(){
-   //     document.getElementsByName("li").style.backgroudcolor="cinza rgb(128,128,128)";
+//function novoItemLista() { //texto digitado aparece na lista e desaparece do input.
+  //  const fraseLista = JSON.parse(sessionStorage.getItem('frase'));   //itens criados permanecem na lista na medida em que novos são adicionados.
+    //const listLength = fraseLista.lenght - 1;
+  //  const fraseText = fraseLista[listLength];
+  //  let frase = document.createElement('li')
+    //frase.addEventListener("dbclick", marcado)
+    //frase.addEventListener('click', colorList)
+   // list.appendChild(frase)
+    //list.value = '';
+//}
+
+//function addFrase (){
+  //  if(sessionStorage.getItem('frase') === null){
+ //       sessionStorage.setItem('frase', JSON.stringify([]));
+  //  }
+ //   const newList = JSON.parse(sessionStorage.getItem('frase'));
+  //  const fraseText= input.value;
+  //  newList.push(frase);
+  //  sessionStorage.setItem('frase', JSON.stringify(newList));
+  //  novoItemLista();
+ //  }
+
+ //button.addEventListener('click', addFrase);
+
+           //
+
+    //listItem.addEventListener('click', colorList);
+    //function colorList(event){
+     //   event.target.style.backgroudColor = 'gray';
+
+        //for (let i = 0; i < fraseText.lenght; )
+       // };
+
+        // 
+
+    //listItem.addEventListener("dbclick", marcado);
+    //function marcado(event){
+       // event.target.classList.toggle('completed');
     //}
-    listItem.addEventListener('click', function(event) {
-        event.target.style.backgroudcolor = 'rgb(128,128,128)';
-        });
+

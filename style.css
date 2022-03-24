@@ -12,5 +12,36 @@ body {
    border-radius: 6%;  
 }
 li:active {
-    background-color: cinza rgb(128,128,128);
+    background-color: gray;
+}
+.completed {
+    text-decoration: line-through solid black;
+}
+button {
+    border-radius: 10px;
+    padding: 4px;
+}
+#criar-tarefa {
+    background-color: blueviolet;
+}
+#apaga-tudo {
+    background-color: firebrick;
+}
+#remover-finalizados{
+    background-color:mediumaquamarine;
+}
+#salvar-tarefas {
+    background-color: lightpink;
+}
+#mover-cima {
+    background-color: goldenrod;
+}
+#mover-baixo{
+    background-color: goldenrod;
+}
+#remover-selecionado{
+    background-color: seagreen;
+}
+.completed {
+    text-decoration: line-through solid rgb(0,0,0);
 }
