@@ -3,71 +3,60 @@ const input = document.getElementById("texto-tarefa");
 const list = document.getElementById("lista-tarefas");
 const listItem = document.getElementsByTagName('li');
 const linhaFrase = document.getElementsByClassName('.completed');
+const apagarTudo = document.getElementById("apaga-tudo");
+const removeCompleted= document.getElementById("remover-finalizados");
+const salvarList = document.getElementById("salvar-tarefas");
+const moveUp = document.getElementById("mover-cima");
+const moveDown = document.getElementById("mover-baixo");
+const moveSelected = document.getElementById("remover-selecionado");
 
-function addFrase(){
-    let texto = input.value;
-    let ciarLi = document.createElement("li");
-    ciarLi.innerText = texto;
-    list.appendChild(ciarLi);
-    input.value = '';
-    listItem.addEventListener('click', colorGrey);
- //   listItem.addEventListener("dbclick", checkCompleted);
-}
-button.addEventListener('click', addFrase);
+button.addEventListener('click', function(){
+  let texto = input.value;
+  let ciarLi = document.createElement("li");
+  ciarLi.innerText = texto;
+  list.appendChild(ciarLi);
+  input.value = '';
+});
 
-function colorGrey(event){
-    event.target.style.backgroudColor = 'grey';
-}
+list.addEventListener('click', function(event){
+  let alvo = document.querySelector('.colorGrey');
+  if (alvo === null){
+    event.target.classList.add("colorGrey");
+  }else {
+    alvo.classList.remove('colorGrey');
+    event.target.classList.add('colorGrey');
+  }
+});
+list.addEventListener('dblclick', function(event){
+  event.target.classList.toggle("completed");
+});
 
-//function checkCompleted(event){
- //   let addClass = document.createElement("class");
- //   ciarLi.innerText = texto;
- //   list.appendChild(ciarLi);
- //   event.target.className('completed');
-  //  event.target.style.text-decoration = 'line-through solid rgb(0,0,0)';
-//}
-//let addClasse = document.getElementsByClassName(".completed");
-   // addClass.className.add("completed"); 
-   // className.add(listItem);
-    //console.log(listItem);
+apagarTudo.addEventListener('click', function (){
+  let lista = document.getElementsByTagName("li");
+  for (let i = lista.length - 1; i >= 0; i--){
+  list.removeChild(lista[i]);
+  }
+});
 
-//function novoItemLista() { //texto digitado aparece na lista e desaparece do input.
-  //  const fraseLista = JSON.parse(sessionStorage.getItem('frase'));   //itens criados permanecem na lista na medida em que novos são adicionados.
-    //const listLength = fraseLista.lenght - 1;
-  //  const fraseText = fraseLista[listLength];
-  //  let frase = document.createElement('li')
-    //frase.addEventListener("dbclick", marcado)
-    //frase.addEventListener('click', colorList)
-   // list.appendChild(frase)
-    //list.value = '';
-//}
+removeCompleted.addEventListener("click", function (){
+  let completedList = document.getElementsByClassName('completed');
+  for (let i = completedList.length -1; i >= 0; i--){
+    list.removeChild(completedList[i]);
+  }
+});
 
-//function addFrase (){
-  //  if(sessionStorage.getItem('frase') === null){
- //       sessionStorage.setItem('frase', JSON.stringify([]));
-  //  }
- //   const newList = JSON.parse(sessionStorage.getItem('frase'));
-  //  const fraseText= input.value;
-  //  newList.push(frase);
-  //  sessionStorage.setItem('frase', JSON.stringify(newList));
-  //  novoItemLista();
- //  }
+salvarList.addEventListener('click', function(){
+    localStorage.setItem('listElement',JSON.stringify(list.innerHTML));
+});
 
- //button.addEventListener('click', addFrase);
+window.onload = function(){
+ let salveList =JSON.parse(localStorage.getItem('listElement'));
+ list.innerHTML = salveList;
+};
 
-           //
-
-    //listItem.addEventListener('click', colorList);
-    //function colorList(event){
-     //   event.target.style.backgroudColor = 'gray';
-
-        //for (let i = 0; i < fraseText.lenght; )
-       // };
-
-        // 
-
-    //listItem.addEventListener("dbclick", marcado);
-    //function marcado(event){
-       // event.target.classList.toggle('completed');
-    //}
-
+moveSelected.addEventListener('click', function(){
+  let lista = document.getElementsByTagName("li");
+  for (let i = lista.length - 1; i >= 0 ; i--){
+    list.removeChild(lista.classList("colorGrey"));
+  }
+});  
