@@ -55,8 +55,8 @@ window.onload = function(){
 };
 
 moveSelected.addEventListener('click', function(){
-  let lista = document.getElementsByTagName("li");
+  let lista = document.getElementsByClassName("colorGrey");
   for (let i = lista.length - 1; i >= 0 ; i--){
-    list.removeChild(lista.classList("colorGrey"));
+    list.removeChild(lista[i]);
   }
 });  
